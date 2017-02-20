@@ -203,22 +203,49 @@ export default class MapService {
     }
 
     //gps坐标转高德经纬度
-    gpsTransform(obj) {
-        let request = new XMLHttpRequest()
-        request.open('post', 'http://restapi.amap.com/v3/assistant/coordinate/convert')
-        let para = 'key=' + obj.key + '&locations=' + obj.lnglat + '&coordsys=gps'
-        request.send(para)
-        request.onreadystatechange = () => {
-            if (request.readyState === 4) {
-                console.log(request.response)
+    static gpsTransform(obj) {//加上static可以不用实例化使用该方法，详见文档说明
+        return new Promise((resolve, reject) => {
+            let  para
+            let request = new XMLHttpRequest()
+            request.open('post', 'http://restapi.amap.com/v3/assistant/coordinate/convert')
+            switch(Object.prototype.toString.call(obj.lnglat)){
+                case '[object String]':para = 'key=' + obj.key + '&locations=' + obj.lnglat + '&coordsys=gps';break; 
+                case '[object Array]':para='key=' + obj.key + '&locations=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&coordsys=gps';break; 
             }
-        }
+            request.send(para)
+            request.onload = () => {
+                resolve(request.response)
+            }
+            request.onerror = (e) => {
+                reject('e')
+            }
+        })
     }
 
     //计算两点之间的距离
-    caculateDistance(twoPoints) {
-        let lnglat1 = new AMap.LngLat(twoPoints.one[0], twoPoints.one[1])
-        let lnglat2 = new AMap.LngLat(twoPoints.two[0], twoPoints.two[1])
+    caculateDistance(twoPoint) {
+        let lnglat1 = new AMap.LngLat(twoPoint.one[0], twoPoint.one[1])
+        let lnglat2 = new AMap.LngLat(twoPoint.two[0], twoPoint.two[1])
         return Math.round(lnglat1.distance(lnglat2))
+    }
+
+    //无需实例化地图的经纬度转真实地址（web服务api）
+    static webLnglatToAddress(obj) {
+        return new Promise((resolve, reject) => {
+            let para
+            let request = new XMLHttpRequest()
+            request.open('post', 'http://restapi.amap.com/v3/geocode/regeo')        
+            switch(Object.prototype.toString.call(obj.lnglat)){
+                case '[object String]':para = 'key=' + obj.key + '&location=' + obj.lnglat + '&extensions=all';break; 
+                case '[object Array]':para='key=' + obj.key + '&location=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&extensions=all';break; 
+            }
+            request.send(para)
+            request.onload = () => {
+                resolve(JSON.parse(request.response))
+            }
+            request.onerror = (e) => {
+                reject('e')
+            }
+        })
     }
 }
