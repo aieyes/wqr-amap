@@ -16,7 +16,6 @@ export default class MapService {
         });
     }
 
-    // p1:调用其他方法时如何确定地图已经初始化完毕，参考wx.ready
 
     //展示地图控件
     showMapTool(obj) {
@@ -39,7 +38,6 @@ export default class MapService {
             })
         }
 
-        // p2:三段代码高度重复，需精简（这个我不知道怎么精简）
     }
 
     //定位
@@ -101,9 +99,6 @@ export default class MapService {
                         panel: ''
                     });
 
-                    // S1:参数尝试优化
-
-
                     placeSearch.searchNearBy(obj.key ? obj.key : '', obj.lngLat, 1000, (status, result) => {
                         if (status === 'complete' && result.info === 'OK') {
                             let returnObj = result.poiList
@@ -159,9 +154,7 @@ export default class MapService {
                 plan = new AMap.Riding(obj)
             } else if (planObj.isDriving) { //如果为驾车
                 plan = new AMap.Driving(obj)
-            }
-
-            // p3:代码冗余  (resolved!!)    
+            } 
 
             if (planObj.searchObj) { //如果是按名称规划路线
                 plan.search(planObj.searchObj, (status, result) => {

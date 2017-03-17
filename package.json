@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "wqr-amap",
+        "scope": null,
+        "escapedName": "wqr-amap",
+        "name": "wqr-amap",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\kaer\\Desktop"
+    ],
+    [
+      {
+        "raw": "wqr-amap",
+        "scope": null,
+        "escapedName": "wqr-amap",
+        "name": "wqr-amap",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\kaer\\Desktop"
+    ]
+  ],
+  "_from": "wqr-amap",
+  "_id": "wqr-amap@1.0.2",
+  "_inCache": true,
+  "_location": "/wqr-amap",
+  "_nodeVersion": "6.9.4",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/wqr-amap-1.0.2.tgz_1489655215098_0.8577371146529913"
+  },
+  "_npmUser": {
+    "name": "575201314",
+    "email": "gcgleb22@163.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "wqr-amap",
+    "scope": null,
+    "escapedName": "wqr-amap",
+    "name": "wqr-amap",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/wqr-amap/-/wqr-amap-1.0.2.tgz",
+  "_shasum": "a620cb8cbb667919080bd62d6c7d7b6476bb90be",
+  "_shrinkwrap": null,
+  "_spec": "wqr-amap",
+  "_where": "C:\\Users\\kaer\\Desktop",
+  "author": {
+    "name": "575201314"
+  },
+  "bugs": {
+    "url": "https://github.com/WangQiangrong/Amap/issues"
+  },
+  "dependencies": {},
+  "description": "amap module",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "a620cb8cbb667919080bd62d6c7d7b6476bb90be",
+    "tarball": "https://registry.npmjs.org/wqr-amap/-/wqr-amap-1.0.2.tgz"
+  },
+  "homepage": "https://github.com/WangQiangrong/Amap#readme",
+  "keywords": [
+    "amap"
+  ],
+  "license": "ISC",
+  "main": "mapService.js",
+  "maintainers": [
+    {
+      "name": "575201314",
+      "email": "gcgleb22@163.com"
+    }
+  ],
+  "name": "wqr-amap",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WangQiangrong/Amap.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
+}
