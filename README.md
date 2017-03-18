@@ -1,7 +1,11 @@
 #高德地图使用详解
 
 ```
-安装：npm i wqr-amap -S
+安装：npm i wqr-amap -S/--save
+```
+
+```
+安装：yarn add wqr-amap -S/--save
 ```
 
 ```
@@ -423,3 +427,16 @@ MapService.webLnglatToAddress(gpsObj).then((response)=>{
 })
 
 ```
+
+
+
+#### 好了，到此结束，去做你的地图去吧！
+
+
+###### AuthorProfile：
+
+Mail：gcgleb22@163.com
+
+Github：[WangQiangrong](https://github.com/WangQiangrong/wqr-amap)  欢迎 Fork 并提出宝贵意见，赏个star再好不过了，哈哈！！
+
+NPM：[575201314](https://www.npmjs.com/~575201314)
