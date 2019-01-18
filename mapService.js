@@ -6,11 +6,18 @@ export default class MapService {
     //初始化高德地图
     initMap() {
         this.oScript = document.createElement('script')
-        this.oScript.src = 'http://webapi.amap.com/maps?v=1.3&key=' + this.mapData.key + '&&plugin=AMap.Geocoder,AMap.Riding,AMap.Walking,AMap.Driving'
+        this.oScript.src = 'https://webapi.amap.com/maps?v=1.3&key=' + this.mapData.key + '&&plugin=AMap.Geocoder,AMap.Riding,AMap.Walking,AMap.Driving'
         document.getElementsByTagName("head")[0].appendChild(this.oScript)
         return new Promise((resolve, reject) => {
             this.oScript.onload = () => { //当地图文件加载完后，初始化地图
                 this.map = new AMap.Map(this.mapData.id, this.mapData.mapStyle)
+                if (this.mapData.mapStyle.centerMarker) {
+                  var marker = new AMap.Marker({
+                    map: this.map,
+                    position: this.map.getCenter(),
+                    icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png"
+                  });
+                }
                 resolve()
             }
         });
@@ -154,7 +161,7 @@ export default class MapService {
                 plan = new AMap.Riding(obj)
             } else if (planObj.isDriving) { //如果为驾车
                 plan = new AMap.Driving(obj)
-            } 
+            }
 
             if (planObj.searchObj) { //如果是按名称规划路线
                 plan.search(planObj.searchObj, (status, result) => {
@@ -200,10 +207,10 @@ export default class MapService {
         return new Promise((resolve, reject) => {
             let  para
             let request = new XMLHttpRequest()
-            request.open('post', 'http://restapi.amap.com/v3/assistant/coordinate/convert')
+            request.open('post', 'https://restapi.amap.com/v3/assistant/coordinate/convert')
             switch(Object.prototype.toString.call(obj.lnglat)){
-                case '[object String]':para = 'key=' + obj.key + '&locations=' + obj.lnglat + '&coordsys=gps';break; 
-                case '[object Array]':para='key=' + obj.key + '&locations=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&coordsys=gps';break; 
+                case '[object String]':para = 'key=' + obj.key + '&locations=' + obj.lnglat + '&coordsys=gps';break;
+                case '[object Array]':para='key=' + obj.key + '&locations=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&coordsys=gps';break;
             }
             request.send(para)
             request.onload = () => {
@@ -227,10 +234,10 @@ export default class MapService {
         return new Promise((resolve, reject) => {
             let para
             let request = new XMLHttpRequest()
-            request.open('post', 'http://restapi.amap.com/v3/geocode/regeo')        
+            request.open('post', 'https://restapi.amap.com/v3/geocode/regeo')
             switch(Object.prototype.toString.call(obj.lnglat)){
-                case '[object String]':para = 'key=' + obj.key + '&location=' + obj.lnglat + '&extensions=all';break; 
-                case '[object Array]':para='key=' + obj.key + '&location=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&extensions=all';break; 
+                case '[object String]':para = 'key=' + obj.key + '&location=' + obj.lnglat + '&extensions=all';break;
+                case '[object Array]':para='key=' + obj.key + '&location=' + obj.lnglat[0]+','+obj.lnglat[1]+ '&extensions=all';break;
             }
             request.send(para)
             request.onload = () => {
